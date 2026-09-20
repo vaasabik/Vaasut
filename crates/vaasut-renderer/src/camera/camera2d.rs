@@ -42,5 +42,3 @@ impl Camera2DView {
         )
     }
 }
-
-use vaasut_math::Vec3;
