@@ -22,14 +22,14 @@ members = [
 ]
 
 [workspace.dependencies]
-egui = "0.28"
-eframe = { version = "0.28", default-features = false, features = ["wgpu", "default_fonts"] }
-wgpu = "0.20"
-glam = "0.29"
+egui = "0.31"
+eframe = { version = "0.31", default-features = false, features = ["wgpu", "default_fonts"] }
+wgpu = "23.0"
+glam = "0.30"
 log = "0.4"
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
-bytemuck = "1.16"
+bytemuck = "1.21"
 
 [dependencies]
 vaasut-editor = { path = "crates/vaasut-editor" }
