@@ -7,6 +7,7 @@ pub mod mesh;
 pub mod camera;
 pub mod light;
 pub mod physics;
+pub mod state;
 
 // Реэкспортируем часто используемые типы
 pub use common::{Visible, Tag, RenderOrder, Static, Active};
@@ -16,3 +17,4 @@ pub use mesh::{MeshComponent, MeshId, MaterialId, MaterialComponent, Primitive, 
 pub use camera::{Camera2D, Camera3D, RenderMode};
 pub use light::{Light, LightType};
 pub use physics::{Collider2D, Collider3D, RigidBody2D, RigidBody3D};
+pub use state::{StateMachineComponent, StateMachineSystem};

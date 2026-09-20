@@ -1,12 +1,4 @@
 //! Vaasut ECS: Система сущностей и компонентов
-//! 
-//! Этот модуль предоставляет архитектуру Entity-Component-System для игрового движка.
-//! 
-//! # Структура
-//! - `core` — Entity Pool, World (главный контейнер)
-//! - `components` — все компоненты (трансформы, спрайты, меши, камеры, свет)
-//! - `storage` — хранение компонентов
-//! - `systems` — системы обработки
 
 pub mod core;
 pub mod components;
@@ -97,6 +89,20 @@ pub mod bundles {
         let entity = world.spawn();
         world.add_component(entity, Transform3DComponent::from_position(x, y, z));
         world.add_component(entity, Light::point(color, intensity, range));
+        entity
+    }
+    
+    /// Создаёт объект с машиной состояний (для врагов, персонажей)
+    pub fn stateful_entity_bundle(
+        world: &mut World,
+        x: f32,
+        y: f32,
+        z: f32,
+    ) -> Entity {
+        let entity = world.spawn();
+        world.add_component(entity, Transform3DComponent::from_position(x, y, z));
+        world.add_component(entity, StateMachineComponent::new());
+        world.add_component(entity, Visible::shown());
         entity
     }
 }
