@@ -20,8 +20,8 @@ pub use components::*;
 
 /// Предопределённые "бандлы" компонентов для быстрого создания объектов
 pub mod bundles {
-    use super::components::*;
-    use vaasut_math::{Color, Vec2, Vec3, Transform2D, Transform3D};
+    use super::*;
+    use vaasut_math::Color;
     use vaasut_core::Entity;
     
     /// Создаёт 2D спрайт с трансформом

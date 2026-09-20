@@ -1,6 +1,6 @@
 //! Компоненты источников света
 
-use vaasut_math::{Color, Vec3};
+use vaasut_math::Color;
 
 /// Тип источника света
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

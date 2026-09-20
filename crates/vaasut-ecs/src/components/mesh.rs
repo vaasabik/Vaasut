@@ -1,6 +1,7 @@
 //! Компоненты для 3D мешей
 
-use vaasut_math::{Vec3, Color};
+use vaasut_math::Color;
+use super::sprite::TextureId;
 
 /// Идентификатор меша в системе ассетов
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
