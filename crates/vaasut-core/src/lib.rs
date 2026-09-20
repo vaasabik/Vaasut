@@ -9,7 +9,7 @@ pub mod state_machine;
 
 pub use entities::Entity;
 pub use primitives::{Name, Dimension};
-pub use errors::VaasutError;
+pub use errors::{VaasutError, VaasutResult, ErrorSeverity};
 pub use state_machine::{StateMachine, State, Transition};
 pub use state_machine::state::StateContext;
 pub use events::{Event, EventBus, EventQueue, EventHandler};
