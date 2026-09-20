@@ -6,19 +6,19 @@ edition = "2021"
 [workspace]
 resolver = "2"
 members = [
+    "crates/vaasut-animation",
+    "crates/vaasut-asset",
+    "crates/vaasut-audio",
     "crates/vaasut-core",
-    "crates/vaasut-math",
     "crates/vaasut-ecs",
+    "crates/vaasut-editor",
+    "crates/vaasut-input",
+    "crates/vaasut-math",
     "crates/vaasut-physics",
     "crates/vaasut-renderer",
-    "crates/vaasut-input",
-    "crates/vaasut-scene",
-    "crates/vaasut-audio",
-    "crates/vaasut-asset",
-    "crates/vaasut-animation",
-    "crates/vaasut-ui",
     "crates/vaasut-runtime",
-    "crates/vaasut-editor",
+    "crates/vaasut-scene",
+    "crates/vaasut-ui",
 ]
 
 [workspace.dependencies]

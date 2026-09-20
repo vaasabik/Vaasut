@@ -1,5 +1,4 @@
-//! Vaasut UI: Интерфейс для игр (кнопки, диалоги)
+//! Vaasut UI: Игровой интерфейс
 
-pub struct GameUI {
-    pub visible: bool,
-}
+pub mod containers;
+pub mod widgets;

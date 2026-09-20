@@ -1,11 +1,4 @@
-//! Vaasut Audio: Воспроизведение звуков и музыки
+//! Vaasut Audio: Звуковой движок
 
-pub struct AudioEngine {
-    pub volume: f32,
-}
-
-impl AudioEngine {
-    pub fn new() -> Self {
-        Self { volume: 1.0 }
-    }
-}
+pub mod engine;
+pub mod sounds;

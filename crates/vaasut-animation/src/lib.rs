@@ -1,5 +1,4 @@
-//! Vaasut Animation: Анимация свойств и скелетов
+//! Vaasut Animation: Система анимации
 
-pub struct AnimationClip {
-    pub name: String,
-}
+pub mod clips;
+pub mod timeline;

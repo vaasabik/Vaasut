@@ -1,13 +1,10 @@
-//! Vaasut Math: Математика для 2D и 3D
+//! Vaasut Math: Математика для игр
 
-// Объявляем подмодули
-pub mod vec2;
-pub mod vec3;
-pub mod transform;
-pub mod matrix;
+pub mod transforms;
+pub mod types;
+pub mod utils;
 
-// Реэкспортируем основные типы для удобства использования
-pub use vec2::Vec2;
-pub use vec3::Vec3;
-pub use transform::{Transform2D, Transform3D};
-pub use matrix::{Mat3, Mat4};
+pub use types::vectors::{Vec2, Vec3, Vec4};
+pub use types::matrices::{Mat3, Mat4};
+pub use types::colors::Color;
+pub use transforms::{Transform2D, Transform3D};

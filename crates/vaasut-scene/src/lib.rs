@@ -1,11 +1,4 @@
-//! Vaasut Scene: Загрузка и сохранение сцен
+//! Vaasut Scene: Управление сценами
 
-pub struct Scene {
-    pub name: String,
-}
-
-impl Scene {
-    pub fn new(name: &str) -> Self {
-        Self { name: name.to_string() }
-    }
-}
+pub mod scenes;
+pub mod serialization;
