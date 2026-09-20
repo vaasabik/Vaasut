@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaasut Engine - Cross-platform Game Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: rgba(10, 10, 15, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ff6b35;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">⚙ Vaasut</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="examples/">Examples</a></li>
+            <li><a href="editor/">Editor</a></li>
+            <li><a href="https://github.com/vaasabik/Vaasut" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Vaasut Engine</h1>
+            <p class="subtitle">A Modern Cross-Platform Game Engine Built with Rust</p>
+            <p>Write once, run anywhere. Vaasut is a modular, high-performance game engine that compiles to WebAssembly, allowing you to create games that run on desktop, mobile, and web browsers with near-native performance.</p>
+            <div class="cta-buttons">
+                <a href="editor/" class="btn btn-primary">Launch Editor</a>
+                <a href="examples/" class="btn btn-secondary">View Examples</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>Why Vaasut?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🚀 WebGPU Powered</h3>
+                <p>Built on wgpu, Vaasut leverages modern graphics APIs (Vulkan, Metal, DX12, WebGPU) for maximum performance across all platforms.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🦀 Pure Rust</h3>
+                <p>Written entirely in Rust for memory safety, zero-cost abstractions, and fearless concurrency. No garbage collector pauses.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌐 Universal Deployment</h3>
+                <p>Compile once to WebAssembly and run your games in any modern browser. Or build native binaries for Windows, macOS, and Linux.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧩 Modular Architecture</h3>
+                <p>Use only what you need. Vaasut is split into independent crates: core, math, physics, renderer, and more.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎮 Built-in Editor</h3>
+                <p>A powerful visual editor accessible directly from your browser. Create, edit, and test scenes without leaving the web.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Mobile Ready</h3>
+                <p>Develop games on your phone using Termux and GitHub Actions. Test on any device with a browser.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Vaasut Engine by vaasabik. Built with Rust and wgpu.</p>
+    </footer>
+</body>
+</html>

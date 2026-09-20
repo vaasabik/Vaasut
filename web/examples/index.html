@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Vaasut Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: rgba(10, 10, 15, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ff6b35;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.5);
+        }
+        
+        .example-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .example-content {
+            padding: 1.5rem;
+        }
+        
+        .example-content h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-content p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .example-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .example-link:hover {
+            text-decoration: underline;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">⚙ Vaasut</li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Examples</a></li>
+            <li><a href="../editor/">Editor</a></li>
+            <li><a href="https://github.com/vaasabik/Vaasut" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Examples</h1>
+        <p class="subtitle">Explore what you can build with Vaasut Engine</p>
+
+        <div class="examples-grid">
+            <div class="example-card">
+                <div class="example-image">🎮</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>2D Platformer</h3>
+                    <p>A classic platformer demonstrating sprite animation, physics, and tile-based collision detection.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-image">🌍</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>3D World</h3>
+                    <p>Explore a 3D environment with lighting, shadows, and camera controls powered by wgpu.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-image">💥</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>Physics Simulation</h3>
+                    <p>Demonstrates the custom physics engine with rigid bodies, collisions, and raycasting.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-image">🎨</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>Particle System</h3>
+                    <p>Beautiful particle effects for explosions, fire, smoke, and magical effects.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-image">🚀</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>Space Shooter</h3>
+                    <p>A complete arcade shooter with enemy AI, power-ups, and high score system.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-image">🏰</div>
+                <div class="example-content">
+                    <span class="badge">Coming Soon</span>
+                    <h3>Isometric RPG</h3>
+                    <p>Top-down RPG with inventory system, dialogue trees, and quest mechanics.</p>
+                    <a href="#" class="example-link">View Demo →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

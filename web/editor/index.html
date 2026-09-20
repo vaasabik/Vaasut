@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Vaasut Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+        
+        nav {
+            background: rgba(10, 10, 15, 0.95);
+            padding: 0.75rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        nav a:hover {
+            color: #ff6b35;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+        }
+        
+        #loading h2 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+        
+        #loading p {
+            color: #a0a0a0;
+        }
+        
+        canvas {
+            display: block;
+            margin-top: 60px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 107, 53, 0.1);
+            border-top: 3px solid #ff6b35;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">⚙ Vaasut Editor</li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../examples/">Examples</a></li>
+            <li><a href="index.html">Editor</a></li>
+            <li><a href="https://github.com/vaasabik/Vaasut" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+    
+    <div id="loading">
+        <div class="spinner"></div>
+        <h2>Loading Vaasut Editor...</h2>
+        <p>Initializing WebAssembly and GPU context</p>
+    </div>
+    <canvas id="vaasut_canvas"></canvas>
+    <script type="module">
+        import init from './vaasut.js';
+        init().then(() => {
+            document.getElementById("loading").style.display = "none";
+        }).catch(err => {
+            document.getElementById("loading").innerHTML = `
+                <h2 style="color: #ff4444;">Failed to load editor</h2>
+                <p style="color: #a0a0a0;">${err.message}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
