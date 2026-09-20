@@ -3,13 +3,19 @@ use eframe::egui;
 /// Панель иерархии сцены
 pub fn show(ctx: &egui::Context) {
     egui::SidePanel::left("hierarchy")
+        .default_width(180.0)
+        .width_range(120.0..=300.0)
         .resizable(true)
-        .default_width(200.0)
-        .min_width(150.0)
-        .max_width(400.0)
         .show(ctx, |ui| {
-            ui.heading("Scene Hierarchy");
-            ui.label("📦 Main Camera");
-            ui.label("💡 Directional Light");
+            ui.heading("Hierarchy");
+            ui.separator();
+            
+            egui::ScrollArea::vertical()
+                .auto_shrink(false)
+                .show(ui, |ui| {
+                    ui.label("📦 Main Camera");
+                    ui.label("💡 Directional Light");
+                    ui.label("🎮 Player");
+                });
         });
 }
