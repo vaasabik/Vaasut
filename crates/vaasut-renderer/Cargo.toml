@@ -1,0 +1,9 @@
+[package]
+name = "vaasut-renderer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+vaasut-math = { path = "../vaasut-math" }
+wgpu = { workspace = true }
+log = { workspace = true }

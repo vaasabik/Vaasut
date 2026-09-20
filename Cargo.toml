@@ -1,18 +1,21 @@
-[package]
-name = "vaasut"
-version = "0.1.0"
-edition = "2021"
-description = "Vaasut — a cross-platform game engine written in Rust"
-license = "MIT"
+[workspace]
+resolver = "2"
+members = [
+    "crates/vaasut-core",
+    "crates/vaasut-math",
+    "crates/vaasut-ecs",
+    "crates/vaasut-physics",
+    "crates/vaasut-renderer",
+    "crates/vaasut-input",
+    "crates/vaasut-scene",
+    "crates/vaasut-editor",
+]
 
-[lib]
-crate-type = ["cdylib", "rlib"]
-
-[dependencies]
-eframe = { version = "0.28", default-features = false, features = ["wgpu", "default_fonts"] }
+[workspace.dependencies]
 egui = "0.28"
+eframe = { version = "0.28", default-features = false, features = ["wgpu", "default_fonts"] }
+wgpu = "0.20"
+glam = "0.29"
 log = "0.4"
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
