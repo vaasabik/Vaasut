@@ -23,13 +23,13 @@ impl RenderPipeline2D {
             layout: None,
             vertex: wgpu::VertexState {
                 module: &shader,
-                entry_point: "vs_main",
+                entry_point: Some("vs_main"), // ← Обёрнуто в Some()
                 buffers: &[Vertex::desc()],
                 compilation_options: Default::default(),
             },
             fragment: Some(wgpu::FragmentState {
                 module: &shader,
-                entry_point: "fs_main",
+                entry_point: Some("fs_main"), // ← Обёрнуто в Some()
                 targets: &[Some(wgpu::ColorTargetState {
                     format: gpu.surface_format,
                     blend: Some(wgpu::BlendState::ALPHA_BLENDING),
@@ -49,6 +49,7 @@ impl RenderPipeline2D {
             depth_stencil: None,
             multisample: wgpu::MultisampleState::default(),
             multiview: None,
+            cache: None, // ← Новое поле в новых версиях wgpu
         });
         
         let mesh = crate::geometry::MeshData::triangle();
