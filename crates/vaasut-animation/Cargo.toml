@@ -1,0 +1,8 @@
+[package]
+name = "vaasut-animation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+vaasut-math = { path = "../vaasut-math" }
+vaasut-core = { path = "../vaasut-core" }

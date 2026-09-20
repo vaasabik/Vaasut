@@ -1,0 +1,8 @@
+[package]
+name = "vaasut-ui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+vaasut-core = { path = "../vaasut-core" }
+vaasut-math = { path = "../vaasut-math" }

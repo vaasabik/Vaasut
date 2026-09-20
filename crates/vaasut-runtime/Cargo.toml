@@ -1,0 +1,9 @@
+[package]
+name = "vaasut-runtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+vaasut-core = { path = "../vaasut-core" }
+vaasut-ecs = { path = "../vaasut-ecs" }
+vaasut-renderer = { path = "../vaasut-renderer" }

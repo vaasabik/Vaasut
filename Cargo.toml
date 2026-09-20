@@ -13,6 +13,11 @@ members = [
     "crates/vaasut-renderer",
     "crates/vaasut-input",
     "crates/vaasut-scene",
+    "crates/vaasut-audio",
+    "crates/vaasut-asset",
+    "crates/vaasut-animation",
+    "crates/vaasut-ui",
+    "crates/vaasut-runtime",
     "crates/vaasut-editor",
 ]
 
