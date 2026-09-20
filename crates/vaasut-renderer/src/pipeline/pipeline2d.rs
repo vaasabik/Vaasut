@@ -3,6 +3,7 @@
 use crate::device::GpuContext;
 use crate::geometry::Vertex;
 use crate::shaders::ShaderLoader;
+use wgpu::util::DeviceExt; // ← Исправление 1: импорт трейта
 
 /// Конвейер для отрисовки 2D графики
 pub struct RenderPipeline2D {
@@ -32,6 +33,7 @@ impl RenderPipeline2D {
                 module: &shader,
                 entry_point: "vs_main",
                 buffers: &[Vertex::desc()],
+                compilation_options: Default::default(), // ← Исправление 2: новое поле
             },
             fragment: Some(wgpu::FragmentState {
                 module: &shader,
@@ -41,6 +43,7 @@ impl RenderPipeline2D {
                     blend: Some(wgpu::BlendState::ALPHA_BLENDING),
                     write_mask: wgpu::ColorWrites::ALL,
                 })],
+                compilation_options: Default::default(), // ← Исправление 2: новое поле
             }),
             primitive: wgpu::PrimitiveState {
                 topology: wgpu::PrimitiveTopology::TriangleList,
@@ -54,6 +57,7 @@ impl RenderPipeline2D {
             depth_stencil: None, // Нет глубины для 2D
             multisample: wgpu::MultisampleState::default(),
             multiview: None,
+            cache: None,
         });
         
         // Создаём тестовый треугольник
