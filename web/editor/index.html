@@ -11,19 +11,25 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0a0f;
             color: #e0e0e0;
-            overflow: hidden;
         }
         
         nav {
             background: rgba(10, 10, 15, 0.95);
             padding: 0.75rem 2rem;
-            position: fixed;
-            width: 100%;
+            position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -33,8 +39,6 @@
             list-style: none;
             display: flex;
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
             align-items: center;
         }
         
@@ -73,9 +77,14 @@
             color: #a0a0a0;
         }
         
-        canvas {
+        #vaasut_canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: block;
-            margin-top: 60px;
+            outline: none;
         }
         
         .spinner {
@@ -110,16 +119,31 @@
         <h2>Loading Vaasut Editor...</h2>
         <p>Initializing WebAssembly and GPU context</p>
     </div>
-    <canvas id="vaasut_canvas"></canvas>
+    
+    <canvas id="vaasut_canvas" tabindex="0"></canvas>
+    
     <script type="module">
         import init from './vaasut.js';
+        
         init().then(() => {
-            document.getElementById("loading").style.display = "none";
+            const loading = document.getElementById("loading");
+            if (loading) {
+                loading.style.display = "none";
+            }
+            
+            const canvas = document.getElementById('vaasut_canvas');
+            if (canvas) {
+                canvas.focus();
+            }
         }).catch(err => {
-            document.getElementById("loading").innerHTML = `
-                <h2 style="color: #ff4444;">Failed to load editor</h2>
-                <p style="color: #a0a0a0;">${err.message}</p>
-            `;
+            console.error('Failed to initialize:', err);
+            const loading = document.getElementById("loading");
+            if (loading) {
+                loading.innerHTML = `
+                    <h2 style="color: #ff4444;">Failed to load editor</h2>
+                    <p style="color: #a0a0a0;">${err.message}</p>
+                `;
+            }
         });
     </script>
 </body>
