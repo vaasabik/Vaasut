@@ -1,3 +1,6 @@
 //! Дополнительные типы для движка
 
-pub mod colors;
+pub mod colors {
+    mod color;
+    pub use color::Color;
+}

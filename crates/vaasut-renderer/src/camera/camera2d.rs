@@ -1,6 +1,6 @@
 //! 2D камера (ортографическая)
 
-use vaasut_math::{Vec2, Mat4};
+use vaasut_math::{Vec2, Vec3, Mat4};
 
 /// 2D камера для рендеринга
 #[derive(Debug, Clone)]
