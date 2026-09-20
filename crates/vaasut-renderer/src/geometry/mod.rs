@@ -1,4 +1,7 @@
-pub mod mesh;
+//! Геометрия — вершины и меши
+
 pub mod vertex;
-pub use mesh::Mesh;
+pub mod mesh;
+
 pub use vertex::Vertex;
+pub use mesh::MeshData;

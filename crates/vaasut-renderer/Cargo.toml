@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+vaasut-core = { path = "../vaasut-core" }
 vaasut-math = { path = "../vaasut-math" }
+vaasut-ecs = { path = "../vaasut-ecs" }
 wgpu = { workspace = true }
 log = { workspace = true }
+bytemuck = { version = "1.16", features = ["derive"] }

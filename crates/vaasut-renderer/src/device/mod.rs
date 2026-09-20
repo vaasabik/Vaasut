@@ -1,4 +1,4 @@
-/// Обертка над wgpu::Device
-pub struct DeviceWrapper {
-    // Здесь будет wgpu::Device и wgpu::Queue
-}
+//! Работа с GPU устройством
+
+pub mod gpu;
+pub use gpu::GpuContext;
