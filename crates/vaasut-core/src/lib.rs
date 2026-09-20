@@ -11,3 +11,4 @@ pub use entities::Entity;
 pub use primitives::{Name, Dimension};
 pub use errors::VaasutError;
 pub use state_machine::{StateMachine, State, Transition};
+pub use events::{Event, EventBus, EventQueue, EventHandler};

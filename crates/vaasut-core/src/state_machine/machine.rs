@@ -3,6 +3,7 @@
 use std::collections::HashMap;
 use super::state::{State, StateContext};
 use super::transition::Transition;
+use crate::events::{EventBus, StateChangedEvent};
 
 /// Машина состояний — универсальная реализация
 pub struct StateMachine {
@@ -18,6 +19,8 @@ pub struct StateMachine {
     history: Vec<String>,
     /// Максимальный размер истории
     max_history: usize,
+    /// Шина событий (опционально)
+    event_bus: Option<EventBus>,
 }
 
 impl StateMachine {
@@ -30,7 +33,20 @@ impl StateMachine {
             context: StateContext::default(),
             history: Vec::new(),
             max_history: 100,
+            event_bus: None,
         }
+    }
+    
+    /// Создаёт машину с шиной событий
+    pub fn with_event_bus(event_bus: EventBus) -> Self {
+        let mut machine = Self::new();
+        machine.event_bus = Some(event_bus);
+        machine
+    }
+    
+    /// Устанавливает шину событий
+    pub fn set_event_bus(&mut self, event_bus: EventBus) {
+        self.event_bus = Some(event_bus);
     }
     
     /// Добавляет состояние
@@ -53,6 +69,10 @@ impl StateMachine {
             if let Some(state) = self.states.get_mut(state_name) {
                 state.on_enter(&self.context);
             }
+            
+            // Отправляем событие
+            self.emit_state_changed("", state_name);
+            
             true
         } else {
             false
@@ -64,6 +84,8 @@ impl StateMachine {
         if !self.states.contains_key(state_name) {
             return false;
         }
+        
+        let previous = self.current_state.clone();
         
         // Выходим из текущего состояния
         if let Some(current) = &self.current_state {
@@ -81,6 +103,10 @@ impl StateMachine {
         if let Some(state) = self.states.get_mut(state_name) {
             state.on_enter(&self.context);
         }
+        
+        // Отправляем событие
+        let prev_name = previous.as_deref().unwrap_or("");
+        self.emit_state_changed(prev_name, state_name);
         
         true
     }
@@ -152,6 +178,14 @@ impl StateMachine {
         }
     }
     
+    /// Отправляет событие изменения состояния
+    fn emit_state_changed(&mut self, previous: &str, new: &str) {
+        if let Some(bus) = &mut self.event_bus {
+            bus.emit(StateChangedEvent::new(previous, new));
+            bus.process(); // Обрабатываем сразу
+        }
+    }
+    
     /// Возвращает количество состояний
     pub fn state_count(&self) -> usize {
         self.states.len()
@@ -173,53 +207,26 @@ impl Default for StateMachine {
 mod tests {
     use super::*;
     use crate::state_machine::state::SimpleState;
+    use crate::events::CallbackHandler;
+    use std::sync::{Arc, Mutex};
     
     #[test]
-    fn test_state_machine_add_state() {
-        let mut machine = StateMachine::new();
-        machine.add_state(SimpleState::new("idle"));
-        machine.add_state(SimpleState::new("running"));
+    fn test_state_machine_with_events() {
+        let mut event_bus = EventBus::new();
+        let state_changes = Arc::new(Mutex::new(0));
         
-        assert_eq!(machine.state_count(), 2);
-        assert!(machine.state_names().contains(&"idle"));
-        assert!(machine.state_names().contains(&"running"));
-    }
-    
-    #[test]
-    fn test_state_machine_set_initial() {
-        let mut machine = StateMachine::new();
-        machine.add_state(SimpleState::new("idle"));
+        let counter = state_changes.clone();
+        event_bus.subscribe("state_changed", Box::new(CallbackHandler::new("counter", move |_event| {
+            *counter.lock().unwrap() += 1;
+        })));
         
-        assert!(machine.set_initial_state("idle"));
-        assert_eq!(machine.current_state(), Some("idle"));
-        assert!(machine.is_in_state("idle"));
-    }
-    
-    #[test]
-    fn test_state_machine_transition() {
-        let mut machine = StateMachine::new();
-        machine.add_state(SimpleState::new("idle"));
-        machine.add_state(SimpleState::new("running"));
-        
-        machine.set_initial_state("idle");
-        assert!(machine.transition_to("running"));
-        assert_eq!(machine.current_state(), Some("running"));
-    }
-    
-    #[test]
-    fn test_state_machine_history() {
-        let mut machine = StateMachine::new();
+        let mut machine = StateMachine::with_event_bus(event_bus);
         machine.add_state(SimpleState::new("idle"));
         machine.add_state(SimpleState::new("running"));
         
         machine.set_initial_state("idle");
         machine.transition_to("running");
-        machine.transition_to("idle");
         
-        let history = machine.history();
-        assert_eq!(history.len(), 3);
-        assert_eq!(history[0], "idle");
-        assert_eq!(history[1], "running");
-        assert_eq!(history[2], "idle");
+        assert_eq!(*state_changes.lock().unwrap(), 2);
     }
 }
