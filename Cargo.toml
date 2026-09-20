@@ -1,7 +1,10 @@
 [package]
-name = "engine_demo"
+name = "vaasut"
 version = "0.1.0"
 edition = "2021"
+description = "Vaasut — a cross-platform game engine and editor built with Rust"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/vaasabik/vaasut"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
